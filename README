@@ -12,14 +12,46 @@ And the contacts application from the sproutcore-samples
 
 == BEFORE YOU CONTINUE
 
+Install sproutcore: sudo gem install sproutcore
+
 If you just cloned this samples directory using Git, you need to run the
 following two commands to get the latest version of SproutCore JavaScript:
 
   git submodule init
   git submodule update
 
-Then create an config/database.yml and run the migrations
+Then create an config/database.yml and run initialize the database
 
-== GOAL
+  rake db:migrate
+  rake db:fixtures:load
 
-Show how to combine all the pieces for both frameworks.
+== Starting up the servers
+
+Startup rails as normal (script/server)
+
+Startup sproutcore development mode server:
+
+  cd sprout && sc-server
+
+http://localhost:4020/contacts
+
+== Building static version
+
+From the sprout directory running sc-build will create 
+
+  sprout/tmp/build/static
+
+This static directory can be moved into your rails public
+directory, then you can run with a static html/css/js, talking
+to the rails server via json.
+
+  cp -r sprout/tmp/build/static public
+
+or
+
+  ln -s ../sprout/tmp/build/static/ public/
+
+Then you can access it via
+
+  http://localhost:3000/static/contacts
+
