@@ -6,6 +6,20 @@ Strongly based on blog posts by Lawrence Pit
 
   * http://blog.lawrencepit.com/2008/07/26/sproutcore-rails-part-ii/
 
-= Goal
+And the contacts application from the sproutcore-samples
+
+  http://github.com/sproutit/sproutcore-samples/
+
+== BEFORE YOU CONTINUE
+
+If you just cloned this samples directory using Git, you need to run the
+following two commands to get the latest version of SproutCore JavaScript:
+
+  git submodule init
+  git submodule update
+
+Then create an config/database.yml and run the migrations
+
+== GOAL
 
 Show how to combine all the pieces for both frameworks.
