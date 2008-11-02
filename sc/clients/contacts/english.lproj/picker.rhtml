@@ -1,0 +1,29 @@
+<% view :photo_picker, :pane => :panel, :width => 400,
+  :bind => { :visible => 'Contacts.masterController.pickerIsVisible' } do %>
+    <table class="card-detail">
+      <tr>
+        <td><label>First Name:</label></td>
+        <td>
+          <%= text_field_view :outlet => true, :hint => "First Name",
+            :bind => {
+              :value => 'Contacts.detailController.firstName'
+            } %>
+        </td>
+      </tr>
+
+      <tr>
+        <td><label>Last Name:</label></td>
+        <td>
+          <%= text_field_view :outlet => true, :hint => "Last Name",
+            :bind => {
+              :value => 'Contacts.detailController.lastName'
+            } %>
+        </td>
+      </tr>
+    </table>
+
+  <div class="buttons">
+    <%= button_view :outlet => true, :title => "Cancel", :action => 'Contacts.masterController.cancelEdit', :width => 60 %>
+    <%= button_view :outlet => true, :default => true, :title => "Save", :action => 'Contacts.masterController.saveEdit', :width => 60 %>
+  </div>
+<% end %>

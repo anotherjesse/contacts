@@ -1,0 +1,59 @@
+<% content_for('body') do %>
+
+<% split_view :workspace, :class => 'sc-app-workspace', :direction => :horizontal do %>
+  <% view :sidebar, :outlet => true do %>
+    <% scroll_view :master_list, :outlet => true do %>
+      <%= list_view :outlet => true,
+        :content_value_key => 'fullName',
+        :bind => {
+          :content => 'Contacts.masterController.arrangedObjects',
+          :selection => 'Contacts.masterController.selection'
+        } %>
+    <% end %>
+  <% end %>
+
+  <%= split_divider_view :outlet => true, :width => 5 %>
+
+  <% view :detail_view, :outlet => true do %>
+    <table class="card-detail" style="width:400px">
+      <tr>
+        <td width="25%"><label>First Name:</label></td>
+        <td>
+          <%= label_view :outlet => true, :hint => "First Name",
+            :bind => {
+              :value => 'Contacts.detailController.firstName'
+            } %>
+        </td>
+      </tr>
+
+      <tr>
+        <td><label>Last Name:</label></td>
+        <td>
+          <%= label_view :outlet => true, :hint => "Last Name",
+            :bind => {
+              :value => 'Contacts.detailController.lastName'
+            } %>
+        </td>
+      </tr>
+
+    </table>
+
+  <% end %>
+<% end %>
+
+
+<% view :footer, :class => 'sc-footer sc-square-theme' do %>
+  <div class="left">
+    <%= button_view :outlet => true, :label => '+', :action => 'Contacts.masterController.addContact' %>
+    <%= button_view :outlet => true, :label => '-', :action => 'Contacts.masterController.deleteContact' %>
+    <%= button_view :outlet => :edit_button, :title => "Edit",
+      :action => 'Contacts.masterController.showPicker',
+      :bind => {
+        :selected => 'Contacts.masterController.pickerIsVisible',
+        :enabled => 'SC.Binding.Not("Contacts.masterController.hasNoContent")'
+      } %>
+  </div>
+<% end %>
+
+
+<% end %>
